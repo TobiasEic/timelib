@@ -93,6 +93,9 @@ int exists_date(int day, int month, int year) {
 
 }
 
+//Die Funktion liest 3 Ganzzahlwerte (Integer) ein, für Tag, Monat und Jahr. Wenn das angegebene Datum
+//ungültig ist, wird erneut eingelesen, solange bis ein gültiges Datum eingegeben wurde.
+
 void input_date(int *day, int *month, int *year) {
 
 	do {
