@@ -31,21 +31,21 @@ int get_days_for_month(int month, int year) {
 //und Jahr die Nummer des Tages, gezählt von Jahresbeginn (1. Januar) an. Schaltjahre werden bei der
 //Berechnung berücksichtigt. Ist das übergebene Datum ungültig, beträgt der Rückgabewert -1.
 int day_of_the_year(int day, int month, int year) {
-	int tage[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+	int days[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 	int i = 0;
-	int ergebnis = 0;
+	int result = 0;
 
 	if (exists_day(day, month, year) == 0) {
 		return -1;
 	}
 
 	for (i = 0; i < month - 1; i++) {
-		ergebnis += tage[i];
+		result += days[i];
 	}
 
-	ergebnis += day;
+	result += day;
 
-	return ergebnis;
+	return result;
 
 }
 
