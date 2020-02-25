@@ -104,7 +104,7 @@ void input_date(int *day, int *month, int *year) {
 		*month = 0;
 		*year = 0;
 
-		printf("Bitte geben Sie einen korrekten Tag an: \n");
+		printf("\nBitte geben Sie einen korrekten Tag an: \n");
 		scanf("%d", day);
 		fflush(stdin);
 
@@ -119,7 +119,7 @@ void input_date(int *day, int *month, int *year) {
 
         if (exists_date(*day, *month, *year) != 1)
         {
-            printf("Ungültiges Datum!\n Bitte geben Sie ein gültiges Datum an!");
+            printf("Ungültiges Datum!\nBitte geben Sie ein gültiges Datum an!\n");
         }
 
 		// TODO Change loop
