@@ -28,20 +28,20 @@ int get_days_for_month(int month, int year) {
 //Die Funktion berechnet für ein gegebenes Datum des gregorianischen Kalenders bestehend aus Tag, Monat
 //und Jahr die Nummer des Tages, gezählt von Jahresbeginn (1. Januar) an. Schaltjahre werden bei der
 //Berechnung berücksichtigt. Ist das übergebene Datum ungültig, beträgt der Rückgabewert -1.
-int day_of_the_year(int day, int month, int year) {
+int day_of_the_year(struct date inputDate) {
 	int days[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 	int i = 0;
 	int result = 0;
 
-	if (exists_date(day, month, year) == 0) {
+	if (exists_date(inputDate) == 0) {
 		return -1;
 	}
 
-	for (i = 0; i < month - 1; i++) {
+	for (i = 0; i < inputDate.month - 1; i++) {
 		result += days[i];
 	}
 
-	result += day;
+	result += inputDate.day;
 
 	return result;
 
@@ -81,10 +81,10 @@ int is_leapyear(int year) {
 
 //Die Funktion überprüft, ob ein eingegebenes Datum gültig ist. Daten vor dem 1.1.1582 sind ungültig, genauso
 //wie alle Daten nach dem 31.12.2400.
-int exists_date(int day, int month, int year) {
+int exists_date(struct date inputDate) {
 
-	if (day < 1 || month < 1 || month > 12 || year < 1582 || year > 2399
-			|| get_days_for_month(month, year) < day) {
+	if (inputDate.day < 1 || inputDate.month < 1 || inputDate.month > 12 || inputDate.year < 1582 || inputDate.year > 2399
+			|| get_days_for_month(inputDate.month, inputDate.year) < inputDate.day) {
 		return 0;
 
 	}
@@ -96,33 +96,26 @@ int exists_date(int day, int month, int year) {
 //Die Funktion liest 3 Ganzzahlwerte (Integer) ein, für Tag, Monat und Jahr. Wenn das angegebene Datum
 //ungültig ist, wird erneut eingelesen, solange bis ein gültiges Datum eingegeben wurde.
 
-void input_date(int *day, int *month, int *year) {
+struct date input_date() {
 
+	struct date inputDate;
 	do {
 
-		*day = 0;
-		*month = 0;
-		*year = 0;
-
 		printf("\nBitte geben Sie einen korrekten Tag an: \n");
-		scanf("%d", day);
+		scanf("%d", &inputDate.day);
 		fflush(stdin);
 
 		printf("\nBitte geben Sie einn korrekten Monat an: \n");
-		scanf("%d", month);
+		scanf("%d", &inputDate.month);
 		fflush(stdin);
 
 		printf("\nBitte geben Sie ein korrektes Jahr an (zwischen 1582 und 2400): \n");
-		scanf("%d", year);
+		scanf("%d", &inputDate.year);
 		fflush(stdin);
 
+	} while (exists_date(inputDate) != 1);
 
-        if (exists_date(*day, *month, *year) != 1)
-        {
-            printf("Ungültiges Datum!\nBitte geben Sie ein gültiges Datum an!\n");
-        }
+	return inputDate;
 
-		// TODO Change loop
-	} while (exists_date(*day, *month, *year) != 1);
 
 }

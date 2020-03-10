@@ -14,13 +14,13 @@
 
 int main(void) {
 
-	int day;
-	int month;
-	int year;
 
-	input_date(&day, &month, &year);
-	int checkDate = day_of_the_year(day, month, year);
+	struct date inputDate = input_date();
 
+	int checkDate = day_of_the_year(inputDate);
+
+
+	//check errors
 	if (checkDate == -1) {
 		printf("Fehlercode -1: Datum existiert nicht.");
 	}
