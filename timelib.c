@@ -33,6 +33,12 @@ int day_of_the_year(struct date inputDate) {
 	int i = 0;
 	int result = 0;
 
+    //check leapyear
+    if (is_leapyear(inputDate.year) == 1)
+    {
+        days[1] = 29;
+    }
+
 	if (exists_date(inputDate) == 0) {
 		return -1;
 	}
@@ -70,10 +76,10 @@ int is_leapyear(int year) {
 					return 0;
 				}
 			} else {
-				return 0;
+				return 1;
 			}
 		} else {
-			return 1;
+			return 0;
 		}
 	}
 
