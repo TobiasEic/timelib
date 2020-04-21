@@ -20,13 +20,8 @@ int get_days_for_month(int month, int year);
 
 int day_of_the_year(struct date inputDate);
 
-
-
 int exists_date(struct date inputDate);
 
 struct date input_date();
-
-
-
 
 #endif /* TIMELIB_H_ */

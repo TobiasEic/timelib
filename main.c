@@ -14,11 +14,11 @@
 
 int main(void) {
 
-
+	// Erstellt ein neuen Struct der mit Daten der Funktion input_Date() gefüllt wird
 	struct date inputDate = input_date();
 
+	// Berechnet den Tag des Jahres
 	int checkDate = day_of_the_year(inputDate);
-
 
 	//check errors
 	if (checkDate == -1) {
